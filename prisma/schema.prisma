@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id        BigInt    @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  name      String
-  email     String    @unique
-  workouts  Workout[]
+  id             BigInt    @id @default(autoincrement())
+  authProviderId String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  name           String
+  email          String    @unique
+  workouts       Workout[]
 }
 
 model Workout {
