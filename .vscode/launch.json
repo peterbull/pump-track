@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Next.js: Debug",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/.bin/next",
+            "args": [
+                "dev",
+                "-p",
+                "3004",
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "DATABASE_URL": "postgresql://user:password@localhost:5432/postgres",
+            },
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3004",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "skipFiles": [
+                "<node_internals>/**",
+                "${workspaceFolder}/apps/web/node_modules/**",
+                "${workspaceFolder}/node_modules/**",
+                "**/node_modules/**",
+                "**/@react-refresh",
+                "**/react-dom/**",
+                "**/react/**",
+                "**/next/**",
+                "**/webpack/**",
+                "**/build/**"
+            ]
+        },
+    ]
+}
