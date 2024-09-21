@@ -8,37 +8,38 @@ datasource db {
 }
 
 model User {
-  id             BigInt    @id @default(autoincrement())
+  id             String    @id @default(cuid())
   authProviderId String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  name           String
+  name           String?
   email          String    @unique
+  image          String?
   workouts       Workout[]
 }
 
 model Workout {
-  id           BigInt     @id @default(autoincrement())
+  id           String     @id @default(cuid())
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   name         String
   description  String?
   user         User       @relation(fields: [userId], references: [id])
-  userId       BigInt
+  userId       String
   exercises    Exercise[]
   sharedFrom   Workout?   @relation("SharedWorkouts", fields: [sharedFromId], references: [id])
-  sharedFromId BigInt?
+  sharedFromId String?    @unique
   sharedTo     Workout[]  @relation("SharedWorkouts")
 }
 
 model Exercise {
-  id        BigInt   @id @default(autoincrement())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String
   sets      Int
   reps      Int
   weight    Float?
-  workout   Workout  @relation(fields: [workoutId], references: [id])
-  workoutId BigInt
+  workout   Workout? @relation(fields: [workoutId], references: [id])
+  workoutId String?  @unique
 }
